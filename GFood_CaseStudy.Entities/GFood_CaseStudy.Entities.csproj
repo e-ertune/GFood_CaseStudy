@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
+    <ProjectReference Include="..\GFood_CaseStudy.Core\GFood_CaseStudy.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GFood_CaseStudy.Core\GFood_CaseStudy.Core.csproj" />
+    <Folder Include="DTOs\" />
   </ItemGroup>
 
 </Project>
