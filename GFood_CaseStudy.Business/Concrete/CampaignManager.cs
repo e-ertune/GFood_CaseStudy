@@ -28,6 +28,11 @@ namespace GFood_CaseStudy.Business.Concrete
             return new SuccessDataResult<Campaign>(data: _campaignDal.Update(campaign), message: "Kampanya silindi.");
         }
 
+        public IDataResult<Campaign> GetById(Guid id)
+        {
+            return new SuccessDataResult<Campaign>(data: _campaignDal.Get(x => x.Id == id), message: "Kampanya getirildi.");
+        }
+
         [CacheAspect(duration: 60, Priority = 1)]
         public IDataResult<IEnumerable<Campaign>> GetList()
         {

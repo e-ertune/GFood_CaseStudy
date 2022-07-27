@@ -27,6 +27,12 @@ namespace GFood_CaseStudy.Business.DependencyResolvers.Autofac
             builder.RegisterType<EfCampaignDal>().As<ICampaignDal>();
             builder.RegisterType<CampaignManager>().As<ICampaignService>();
 
+            builder.RegisterType<EfCategoryDal>().As<ICategoryDal>();
+            builder.RegisterType<CategoryManager>().As<ICategoryService>();
+
+            builder.RegisterType<EfProductCategoryDal>().As<IProductCategoryDal>();
+            builder.RegisterType<ProductCategoryManager>().As<IProductCategoryService>();
+
             var assembly = Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().EnableInterfaceInterceptors(new ProxyGenerationOptions()
             {

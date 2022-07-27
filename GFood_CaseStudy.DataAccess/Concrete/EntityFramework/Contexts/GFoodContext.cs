@@ -21,6 +21,8 @@ namespace GFood_CaseStudy.DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketProduct> BasketProducts { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +33,7 @@ namespace GFood_CaseStudy.DataAccess.Concrete.EntityFramework.Contexts
                 entity.HasIndex(e => e.CreatedAt).HasDatabaseName("IX_Products_CreatedAt");
                 entity.HasIndex(e => e.UpdatedAt).HasDatabaseName("IX_Products_UpdatedAt");
                 entity.HasMany(e => e.BasketProducts).WithOne(e => e.Product);
+                entity.HasMany(e => e.ProductCategories).WithOne(e => e.Product);
             });
 
             modelBuilder.Entity<Basket>(entity =>
@@ -53,6 +56,21 @@ namespace GFood_CaseStudy.DataAccess.Concrete.EntityFramework.Contexts
                 entity.HasKey(e => new { e.ProductId, e.BasketId }).HasName("PK_BasketProducts");
                 entity.HasIndex(e => e.CreatedAt).HasDatabaseName("IX_BasketProducts_CreatedAt");
                 entity.HasIndex(e => e.UpdatedAt).HasDatabaseName("IX_BasketProducts_UpdatedAt");
+            });
+
+            modelBuilder.Entity<Category>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Categories");
+                entity.HasIndex(e => e.CreatedAt).HasDatabaseName("IX_Categories_CreatedAt");
+                entity.HasIndex(e => e.UpdatedAt).HasDatabaseName("IX_Categories_UpdatedAt");
+                entity.HasIndex(e => e.ParentId).HasDatabaseName("IX_Categories_ParentId");
+                entity.HasMany(e => e.SubCategories).WithOne(e => e.ParentCategory);
+                entity.HasMany(e => e.ProductCategories).WithOne(e => e.Category);
+            });
+
+            modelBuilder.Entity<ProductCategory>(entity =>
+            {
+                entity.HasKey(e => new { e.ProductId, e.CategoryId }).HasName("PK_ProductCategories");
             });
         }
     }

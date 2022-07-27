@@ -5,6 +5,7 @@
         public Product()
         {
             BasketProducts = new HashSet<BasketProduct>();
+            ProductCategories = new HashSet<ProductCategory>();
         }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
@@ -13,5 +14,6 @@
         public bool IsDeleted { get; set; } = false;
 
         public virtual ICollection<BasketProduct> BasketProducts { get; set; }
+        public virtual ICollection<ProductCategory> ProductCategories { get; set; }
     }
 }

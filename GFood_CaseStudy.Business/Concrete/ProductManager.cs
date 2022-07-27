@@ -31,13 +31,19 @@ namespace GFood_CaseStudy.Business.Concrete
         [CacheAspect(duration: 60, Priority = 1)]
         public IDataResult<Product> GetByCode(string code)
         {
-            return new SuccessDataResult<Product>(data: _productDal.Get(x => x.Code == code), message: "Ürün getirildi.");
+            return new SuccessDataResult<Product>(data: _productDal.Get(x => x.Code == code, includes: new[]
+            {
+                "ProductCategories"
+            }), message: "Ürün getirildi.");
         }
 
         [CacheAspect(duration: 60, Priority = 1)]
         public IDataResult<Product> GetById(Guid id)
         {
-            return new SuccessDataResult<Product>(data: _productDal.Get(x => x.Id == id), message: "Ürün getirildi.");
+            return new SuccessDataResult<Product>(data: _productDal.Get(x => x.Id == id, includes: new[]
+            {
+                "ProductCategories"
+            }), message: "Ürün getirildi.");
         }
 
         [CacheAspect(duration: 60, Priority = 1)]
@@ -49,7 +55,10 @@ namespace GFood_CaseStudy.Business.Concrete
         [CacheAspect(duration: 60, Priority = 1)]
         public IDataResult<IEnumerable<Product>> GetList(bool isActive)
         {
-            return new SuccessDataResult<IEnumerable<Product>>(data: _productDal.GetList(x => x.IsActive == isActive), message: "Ürün listesi getirildi.");
+            return new SuccessDataResult<IEnumerable<Product>>(data: _productDal.GetList(x => x.IsActive == isActive, includes: new[]
+            {
+                "ProductCategories"
+            }), message: "Ürün listesi getirildi.");
         }
 
         [CacheRemoveAspect("IProductService.Get", Priority = 1)]

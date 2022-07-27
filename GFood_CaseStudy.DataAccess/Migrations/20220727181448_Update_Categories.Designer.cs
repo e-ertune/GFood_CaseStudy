@@ -3,6 +3,7 @@ using System;
 using GFood_CaseStudy.DataAccess.Concrete.EntityFramework.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace GFood_CaseStudy.DataAccess.Migrations
 {
     [DbContext(typeof(GFoodContext))]
-    partial class GFoodContextModelSnapshot : ModelSnapshot
+    [Migration("20220727181448_Update_Categories")]
+    partial class Update_Categories
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,7 +45,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
                     b.HasIndex("UpdatedAt")
                         .HasDatabaseName("IX_Baskets_UpdatedAt");
 
-                    b.ToTable("Baskets", (string)null);
+                    b.ToTable("Baskets");
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.BasketProduct", b =>
@@ -74,7 +76,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
                     b.HasIndex("UpdatedAt")
                         .HasDatabaseName("IX_BasketProducts_UpdatedAt");
 
-                    b.ToTable("BasketProducts", (string)null);
+                    b.ToTable("BasketProducts");
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.Campaign", b =>
@@ -115,7 +117,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
                     b.HasIndex("UpdatedAt")
                         .HasDatabaseName("IX_Campaigns_UpdatedAt");
 
-                    b.ToTable("Campaigns", (string)null);
+                    b.ToTable("Campaigns");
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.Category", b =>
@@ -161,7 +163,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
                     b.HasIndex("UpdatedAt")
                         .HasDatabaseName("IX_Categories_UpdatedAt");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.Product", b =>
@@ -206,7 +208,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
                     b.HasIndex("UpdatedAt")
                         .HasDatabaseName("IX_Products_UpdatedAt");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.ProductCategory", b =>
@@ -222,7 +224,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("ProductCategories", (string)null);
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.BasketProduct", b =>

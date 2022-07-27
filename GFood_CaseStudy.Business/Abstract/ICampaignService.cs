@@ -7,6 +7,7 @@ namespace GFood_CaseStudy.Business.Abstract
     {
         IDataResult<IEnumerable<Campaign>> GetList();
         IDataResult<IEnumerable<Campaign>> GetListByDate();
+        IDataResult<Campaign> GetById(Guid id);
         IDataResult<Campaign> Add(Campaign campaign);
         IDataResult<Campaign> Update(Campaign campaign);
         IDataResult<Campaign> Delete(Campaign campaign);
