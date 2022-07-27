@@ -32,7 +32,11 @@ namespace GFood_CaseStudy.Business.Concrete
 
         public IDataResult<IEnumerable<Category>> GetList()
         {
-            return new SuccessDataResult<IEnumerable<Category>>(data: _categoryDal.GetList(x => !x.IsDeleted), message: "Kategori listesi getirildi.");
+            return new SuccessDataResult<IEnumerable<Category>>(data: _categoryDal.GetList(x => !x.IsDeleted, includes: new[]
+            {
+                "ParentCategory",
+                "SubCategories"
+            }), message: "Kategori listesi getirildi.");
         }
 
         public IDataResult<Category> Update(Category category)

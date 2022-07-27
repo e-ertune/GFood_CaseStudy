@@ -6,6 +6,7 @@
         {
             BasketProducts = new HashSet<BasketProduct>();
             ProductCategories = new HashSet<ProductCategory>();
+            ProductPrices = new HashSet<ProductPrice>();
         }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
@@ -15,5 +16,6 @@
 
         public virtual ICollection<BasketProduct> BasketProducts { get; set; }
         public virtual ICollection<ProductCategory> ProductCategories { get; set; }
+        public virtual ICollection<ProductPrice> ProductPrices { get; set; }
     }
 }

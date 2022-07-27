@@ -33,6 +33,12 @@ namespace GFood_CaseStudy.Business.DependencyResolvers.Autofac
             builder.RegisterType<EfProductCategoryDal>().As<IProductCategoryDal>();
             builder.RegisterType<ProductCategoryManager>().As<IProductCategoryService>();
 
+            builder.RegisterType<EfBasketCouponCodeDal>().As<IBasketCouponCodeDal>();
+            builder.RegisterType<BasketCouponCodeManager>().As<IBasketCouponCodeService>();
+
+            builder.RegisterType<EfProductPriceDal>().As<IProductPriceDal>();
+            builder.RegisterType<ProductPriceManager>().As<IProductPriceService>();
+
             var assembly = Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().EnableInterfaceInterceptors(new ProxyGenerationOptions()
             {

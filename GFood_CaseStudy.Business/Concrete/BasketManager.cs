@@ -28,6 +28,7 @@ namespace GFood_CaseStudy.Business.Concrete
             {
                 "BasketProducts",
                 "BasketProducts.Product",
+                "BasketProducts.Product.ProductPrices",
             }), message: "Sepet getirildi.");
         }
 

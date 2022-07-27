@@ -40,9 +40,9 @@ namespace GFood_CaseStudy.Business.Concrete
         }
 
         [CacheAspect(duration: 60, Priority = 1)]
-        public IDataResult<IEnumerable<Campaign>> GetListByDate()
+        public IDataResult<IEnumerable<Campaign>> GetListByDate(DateTime date)
         {
-            return new SuccessDataResult<IEnumerable<Campaign>>(data: _campaignDal.GetList(x => x.StartDate < DateTime.Now && x.EndDate > DateTime.Now), message: "Kampanyalar getirildi.");
+            return new SuccessDataResult<IEnumerable<Campaign>>(data: _campaignDal.GetList(x => x.StartDate < date && x.EndDate > date), message: "Kampanyalar getirildi.");
         }
 
         [CacheRemoveAspect("ICampaignService.Get", Priority = 1)]

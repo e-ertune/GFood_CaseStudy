@@ -7,6 +7,7 @@ namespace GFood_CaseStudy.Entities.Models
         public Guid BasketId { get; set; }
         public Guid ProductId { get; set; }
         public int Quantity { get; set; }
+        public decimal Price { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = null;
 

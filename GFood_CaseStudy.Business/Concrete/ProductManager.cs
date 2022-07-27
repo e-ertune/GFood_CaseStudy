@@ -42,7 +42,8 @@ namespace GFood_CaseStudy.Business.Concrete
         {
             return new SuccessDataResult<Product>(data: _productDal.Get(x => x.Id == id, includes: new[]
             {
-                "ProductCategories"
+                "ProductCategories",
+                "ProductPrices"
             }), message: "Ürün getirildi.");
         }
 
@@ -53,7 +54,7 @@ namespace GFood_CaseStudy.Business.Concrete
         }
 
         [CacheAspect(duration: 60, Priority = 1)]
-        public IDataResult<IEnumerable<Product>> GetList(bool isActive)
+        public IDataResult<IEnumerable<Product>> GetListByActivity(bool isActive)
         {
             return new SuccessDataResult<IEnumerable<Product>>(data: _productDal.GetList(x => x.IsActive == isActive, includes: new[]
             {

@@ -6,7 +6,7 @@ namespace GFood_CaseStudy.Business.Abstract
     public interface ICampaignService
     {
         IDataResult<IEnumerable<Campaign>> GetList();
-        IDataResult<IEnumerable<Campaign>> GetListByDate();
+        IDataResult<IEnumerable<Campaign>> GetListByDate(DateTime date);
         IDataResult<Campaign> GetById(Guid id);
         IDataResult<Campaign> Add(Campaign campaign);
         IDataResult<Campaign> Update(Campaign campaign);

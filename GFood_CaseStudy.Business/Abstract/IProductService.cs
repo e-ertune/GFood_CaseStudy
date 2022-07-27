@@ -6,7 +6,7 @@ namespace GFood_CaseStudy.Business.Abstract
     public interface IProductService
     {
         IDataResult<IEnumerable<Product>> GetList();
-        IDataResult<IEnumerable<Product>> GetList(bool isActive);
+        IDataResult<IEnumerable<Product>> GetListByActivity(bool isActive);
         IDataResult<Product> GetById(Guid id);
         IDataResult<Product> GetByCode(string code);
         IDataResult<Product> Add(Product product);
