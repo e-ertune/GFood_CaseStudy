@@ -80,8 +80,10 @@ namespace GFood_CaseStudy.Business.Concrete
             {
                 "CampaignConditions",
                 "CampaignConditions.CampaignConditionProducts",
+                "CampaignConditions.CampaignConditionProducts.Product",
                 "CampaignGoals",
                 "CampaignGoals.CampaignGoalProducts",
+                "CampaignGoals.CampaignGoalProducts.Product",
             }), message: "Kampanyalar getirildi.");
         }
 

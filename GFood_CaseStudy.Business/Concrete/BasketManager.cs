@@ -24,13 +24,26 @@ namespace GFood_CaseStudy.Business.Concrete
         [CacheAspect(duration: 60, Priority = 1)]
         public IDataResult<Basket> GetById(int id)
         {
-            return new SuccessDataResult<Basket>(data: _basketDal.Get(x => x.Id == id, includes: new[]
+            var result = _basketDal.Get(x => x.Id == id, includes: new[]
             {
                 "BasketProducts",
                 "BasketProducts.Product",
                 "BasketProducts.Product.ProductPrices",
                 "BasketProducts.Product.ProductCategories",
-            }), message: "Sepet getirildi.");
+                "BasketCampaigns",
+                "BasketCampaigns.Campaign",
+                "BasketCampaigns.Campaign.CampaignConditions",
+                "BasketCampaigns.Campaign.CampaignConditions.CampaignConditionProducts",
+                "BasketCampaigns.Campaign.CampaignConditions.CampaignConditionProducts.Product",
+                "BasketCampaigns.Campaign.CampaignGoals",
+                "BasketCampaigns.Campaign.CampaignGoals.CampaignGoalProducts",
+                "BasketCampaigns.Campaign.CampaignGoals.CampaignGoalProducts.Product",
+            });
+            if (result != null)
+            {
+                return new SuccessDataResult<Basket>(data: result, message: "Sepet getirildi.");
+            }
+            return new ErrorDataResult<Basket>(data: result, message: "Sepet bulunamadı.");
         }
 
         [CacheAspect(duration: 60, Priority = 1)]

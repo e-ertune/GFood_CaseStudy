@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GFood_CaseStudy.Business\GFood_CaseStudy.Business.csproj" />
+    <ProjectReference Include="..\GFood_CaseStudy.Core\GFood_CaseStudy.Core.csproj" />
   </ItemGroup>
 
 </Project>

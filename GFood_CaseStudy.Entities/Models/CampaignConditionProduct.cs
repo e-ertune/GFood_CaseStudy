@@ -9,5 +9,6 @@ namespace GFood_CaseStudy.Entities.Models
         public int Quantity { get; set; }
 
         public virtual CampaignCondition? CampaignCondition { get; set; }
+        public virtual Product? Product { get; set; }
     }
 }

@@ -43,6 +43,8 @@ namespace GFood_CaseStudy.DataAccess.Concrete.EntityFramework.Contexts
                 entity.HasMany(e => e.BasketProducts).WithOne(e => e.Product);
                 entity.HasMany(e => e.ProductCategories).WithOne(e => e.Product);
                 entity.HasMany(e => e.ProductPrices).WithOne(e => e.Product);
+                entity.HasMany(e => e.CampaignConditionProducts).WithOne(e => e.Product);
+                entity.HasMany(e => e.CampaignGoalProducts).WithOne(e => e.Product);
             });
 
             modelBuilder.Entity<Basket>(entity =>

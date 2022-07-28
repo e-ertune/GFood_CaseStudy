@@ -7,6 +7,8 @@
             BasketProducts = new HashSet<BasketProduct>();
             ProductCategories = new HashSet<ProductCategory>();
             ProductPrices = new HashSet<ProductPrice>();
+            CampaignConditionProducts = new HashSet<CampaignConditionProduct>();
+            CampaignGoalProducts = new HashSet<CampaignGoalProduct>();
         }
         public string Name { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
@@ -17,5 +19,7 @@
         public virtual ICollection<BasketProduct> BasketProducts { get; set; }
         public virtual ICollection<ProductCategory> ProductCategories { get; set; }
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
+        public virtual ICollection<CampaignConditionProduct> CampaignConditionProducts { get; set; }
+        public virtual ICollection<CampaignGoalProduct> CampaignGoalProducts { get; set; }
     }
 }

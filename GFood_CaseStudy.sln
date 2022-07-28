@@ -11,7 +11,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GFood_CaseStudy.Entities", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GFood_CaseStudy.Business", "GFood_CaseStudy.Business\GFood_CaseStudy.Business.csproj", "{975C33B6-518B-4F1F-8103-5C60B0E6F533}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GFood_CaseStudy.TestAPI", "GFood_CaseStudy.TestAPI\GFood_CaseStudy.TestAPI.csproj", "{33FC012B-3A75-44CB-B632-192949E3DE50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GFood_CaseStudy.TestAPI", "GFood_CaseStudy.TestAPI\GFood_CaseStudy.TestAPI.csproj", "{33FC012B-3A75-44CB-B632-192949E3DE50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GFood_CaseStudy.ProductAPI", "GFood_CaseStudy.ProductAPI\GFood_CaseStudy.ProductAPI.csproj", "{968D789C-631A-46EC-A051-226151BA1699}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GFood_CaseStudy.CampaignAPI", "GFood_CaseStudy.CampaignAPI\GFood_CaseStudy.CampaignAPI.csproj", "{D31A28E5-2AC7-4A9E-AC30-863AC10D0C8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GFood_CaseStudy.AddProductAPI", "GFood_CaseStudy.AddProductAPI\GFood_CaseStudy.AddProductAPI.csproj", "{60D9F054-6BDE-4486-B6AB-442C4EEDB1FE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GFood_CaseStudy.GetBasketAPI", "GFood_CaseStudy.GetBasketAPI\GFood_CaseStudy.GetBasketAPI.csproj", "{4E5DD36B-2577-4BEA-900B-9506EA1608B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GFood_CaseStudy.ChooseCampaignAPI", "GFood_CaseStudy.ChooseCampaignAPI\GFood_CaseStudy.ChooseCampaignAPI.csproj", "{0B117507-F61B-48C0-B8CB-D4A78A8ACA30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GFood_CaseStudy.CreateBasketAPI", "GFood_CaseStudy.CreateBasketAPI\GFood_CaseStudy.CreateBasketAPI.csproj", "{95F182AB-AB51-4344-A474-737AC28823A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +51,30 @@ Global
 		{33FC012B-3A75-44CB-B632-192949E3DE50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33FC012B-3A75-44CB-B632-192949E3DE50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33FC012B-3A75-44CB-B632-192949E3DE50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{968D789C-631A-46EC-A051-226151BA1699}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{968D789C-631A-46EC-A051-226151BA1699}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{968D789C-631A-46EC-A051-226151BA1699}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{968D789C-631A-46EC-A051-226151BA1699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D31A28E5-2AC7-4A9E-AC30-863AC10D0C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D31A28E5-2AC7-4A9E-AC30-863AC10D0C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D31A28E5-2AC7-4A9E-AC30-863AC10D0C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D31A28E5-2AC7-4A9E-AC30-863AC10D0C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60D9F054-6BDE-4486-B6AB-442C4EEDB1FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60D9F054-6BDE-4486-B6AB-442C4EEDB1FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60D9F054-6BDE-4486-B6AB-442C4EEDB1FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60D9F054-6BDE-4486-B6AB-442C4EEDB1FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E5DD36B-2577-4BEA-900B-9506EA1608B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E5DD36B-2577-4BEA-900B-9506EA1608B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E5DD36B-2577-4BEA-900B-9506EA1608B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E5DD36B-2577-4BEA-900B-9506EA1608B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B117507-F61B-48C0-B8CB-D4A78A8ACA30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B117507-F61B-48C0-B8CB-D4A78A8ACA30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B117507-F61B-48C0-B8CB-D4A78A8ACA30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B117507-F61B-48C0-B8CB-D4A78A8ACA30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95F182AB-AB51-4344-A474-737AC28823A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95F182AB-AB51-4344-A474-737AC28823A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95F182AB-AB51-4344-A474-737AC28823A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95F182AB-AB51-4344-A474-737AC28823A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
