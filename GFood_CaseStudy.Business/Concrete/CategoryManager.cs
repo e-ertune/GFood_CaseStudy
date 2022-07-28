@@ -25,7 +25,7 @@ namespace GFood_CaseStudy.Business.Concrete
             return new SuccessDataResult<Category>(data: _categoryDal.Update(category), message: "Kategori silindi.");
         }
 
-        public IDataResult<Category> GetById(Guid id)
+        public IDataResult<Category> GetById(int id)
         {
             return new SuccessDataResult<Category>(data: _categoryDal.Get(x => x.Id == id), message: "Kategori getirildi.");
         }

@@ -7,7 +7,7 @@
             SubCategories = new HashSet<Category>();
             ProductCategories = new HashSet<ProductCategory>();
         }
-        public Guid? ParentId { get; set; }
+        public int? ParentId { get; set; }
         public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
         public bool IsDeleted { get; set; } = false;

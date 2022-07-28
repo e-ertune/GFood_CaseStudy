@@ -38,7 +38,7 @@ namespace GFood_CaseStudy.Business.Concrete
         }
 
         [CacheAspect(duration: 60, Priority = 1)]
-        public IDataResult<Product> GetById(Guid id)
+        public IDataResult<Product> GetById(int id)
         {
             return new SuccessDataResult<Product>(data: _productDal.Get(x => x.Id == id, includes: new[]
             {

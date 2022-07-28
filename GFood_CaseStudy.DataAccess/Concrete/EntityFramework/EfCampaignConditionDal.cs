@@ -5,7 +5,7 @@ using GFood_CaseStudy.Entities.Models;
 
 namespace GFood_CaseStudy.DataAccess.Concrete.EntityFramework
 {
-    public class EfBasketCouponCodeDal : EfEntityRepositoryBase<BasketCouponCode, GFoodContext>, IBasketCouponCodeDal
+    public class EfCampaignConditionDal : EfEntityRepositoryBase<CampaignCondition, GFoodContext>, ICampaignConditionDal
     {
     }
 }

@@ -5,12 +5,12 @@
         public Basket()
         {
             BasketProducts = new HashSet<BasketProduct>();
-            BasketCouponCodes = new HashSet<BasketCouponCode>();
+            BasketCampaigns = new HashSet<BasketCampaign>();
         }
 
         public decimal Total { get; set; } = 0;
 
         public virtual ICollection<BasketProduct> BasketProducts { get; set; }
-        public virtual ICollection<BasketCouponCode> BasketCouponCodes { get; set; }
+        public virtual ICollection<BasketCampaign> BasketCampaigns { get; set; }
     }
 }

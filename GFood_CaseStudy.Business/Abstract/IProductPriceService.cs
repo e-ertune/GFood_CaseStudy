@@ -5,8 +5,8 @@ namespace GFood_CaseStudy.Business.Abstract
 {
     public interface IProductPriceService
     {
-        IDataResult<ProductPrice> GetById(Guid id);
-        IDataResult<ProductPrice> GetActiveByProductId(Guid productId);
+        IDataResult<ProductPrice> GetById(int id);
+        IDataResult<ProductPrice> GetActiveByProductId(int productId);
         IDataResult<ProductPrice> Add(ProductPrice productPrice);
         IDataResult<ProductPrice> Delete(ProductPrice productPrice);        
     }

@@ -22,13 +22,14 @@ namespace GFood_CaseStudy.Business.Concrete
         }
 
         [CacheAspect(duration: 60, Priority = 1)]
-        public IDataResult<Basket> GetById(Guid id)
+        public IDataResult<Basket> GetById(int id)
         {
             return new SuccessDataResult<Basket>(data: _basketDal.Get(x => x.Id == id, includes: new[]
             {
                 "BasketProducts",
                 "BasketProducts.Product",
                 "BasketProducts.Product.ProductPrices",
+                "BasketProducts.Product.ProductCategories",
             }), message: "Sepet getirildi.");
         }
 

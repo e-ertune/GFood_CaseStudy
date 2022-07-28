@@ -4,10 +4,10 @@ namespace GFood_CaseStudy.Entities.Models
 {
     public class BasketProduct : IEntity
     {
-        public Guid BasketId { get; set; }
-        public Guid ProductId { get; set; }
-        public int Quantity { get; set; }
+        public int BasketId { get; set; }
+        public int ProductId { get; set; }
         public decimal Price { get; set; }
+        public int Quantity { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; } = null;
 

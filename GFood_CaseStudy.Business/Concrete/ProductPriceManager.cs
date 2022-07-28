@@ -30,12 +30,12 @@ namespace GFood_CaseStudy.Business.Concrete
             return new SuccessDataResult<ProductPrice>(data: _productPriceDal.Update(productPrice));
         }
 
-        public IDataResult<ProductPrice> GetActiveByProductId(Guid productId)
+        public IDataResult<ProductPrice> GetActiveByProductId(int productId)
         {
             return new SuccessDataResult<ProductPrice>(data: _productPriceDal.Get(x => !x.IsDeleted && x.ProductId == productId));
         }
 
-        public IDataResult<ProductPrice> GetById(Guid id)
+        public IDataResult<ProductPrice> GetById(int id)
         {
             return new SuccessDataResult<ProductPrice>(data: _productPriceDal.Get(x => x.Id == id));
         }

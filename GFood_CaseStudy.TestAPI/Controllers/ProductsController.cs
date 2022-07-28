@@ -54,7 +54,7 @@ namespace GFood_CaseStudy.TestAPI.Controllers
         }
 
         [HttpGet("productId")]
-        public IActionResult GetPrice(Guid productId)
+        public IActionResult GetPrice(int productId)
         {
             var result = _productPriceService.GetActiveByProductId(productId);
             if (result.IsSuccess)

@@ -39,7 +39,7 @@ namespace GFood_CaseStudy.TestAPI.Controllers
         }
 
         [HttpDelete("id")]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete(int id)
         {
             var category = _categoryService.GetById(id);
             if (category.IsSuccess)

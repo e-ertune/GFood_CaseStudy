@@ -14,6 +14,8 @@ namespace GFood_CaseStudy.DataAccess.Concrete.EntityFramework.Contexts
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseNpgsql("Host=localhost;Database=GFood;Username=postgres;Password=s9k15JN3&pLn");
+                AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+                //optionsBuilder.UseLazyLoadingProxies();
             }
         }
 
@@ -21,11 +23,14 @@ namespace GFood_CaseStudy.DataAccess.Concrete.EntityFramework.Contexts
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketProduct> BasketProducts { get; set; }
         public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<CampaignCondition> CampaignConditions { get; set; }
+        public DbSet<CampaignConditionProduct> CampaignConditionProducts { get; set; }
+        public DbSet<CampaignGoal> CampaignGoals { get; set; }
+        public DbSet<CampaignGoalProduct> CampaignGoalProducts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
-        public DbSet<CouponCode> CouponCodes { get; set; }
-        public DbSet<BasketCouponCode> BasketCouponCodes { get; set; }
         public DbSet<ProductPrice> ProductPrices { get; set; }
+        public DbSet<BasketCampaign> BasketCampaigns { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,7 +51,7 @@ namespace GFood_CaseStudy.DataAccess.Concrete.EntityFramework.Contexts
                 entity.HasIndex(e => e.CreatedAt).HasDatabaseName("IX_Baskets_CreatedAt");
                 entity.HasIndex(e => e.UpdatedAt).HasDatabaseName("IX_Baskets_UpdatedAt");
                 entity.HasMany(e => e.BasketProducts).WithOne(e => e.Basket);
-                entity.HasMany(e => e.BasketCouponCodes).WithOne(e => e.Basket);
+                entity.HasMany(e => e.BasketCampaigns).WithOne(e => e.Basket);
             });
 
             modelBuilder.Entity<Campaign>(entity =>
@@ -54,6 +59,35 @@ namespace GFood_CaseStudy.DataAccess.Concrete.EntityFramework.Contexts
                 entity.HasKey(e => e.Id).HasName("PK_Campaigns");
                 entity.HasIndex(e => e.CreatedAt).HasDatabaseName("IX_Campaigns_CreatedAt");
                 entity.HasIndex(e => e.UpdatedAt).HasDatabaseName("IX_Campaigns_UpdatedAt");
+                entity.HasMany(e => e.CampaignGoals).WithOne(e => e.Campaign);
+                entity.HasMany(e => e.CampaignConditions).WithOne(e => e.Campaign);
+                entity.HasMany(e => e.BasketCampaigns).WithOne(e => e.Campaign);
+            });
+
+            modelBuilder.Entity<CampaignCondition>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_CampaignConditions");
+                entity.HasIndex(e => e.CreatedAt).HasDatabaseName("IX_CampaignConditions_CreatedAt");
+                entity.HasIndex(e => e.UpdatedAt).HasDatabaseName("IX_CampaignConditions_UpdatedAt");
+                entity.HasMany(e => e.CampaignConditionProducts).WithOne(e => e.CampaignCondition);
+            });
+
+            modelBuilder.Entity<CampaignConditionProduct>(entity =>
+            {
+                entity.HasKey(e => new { e.ProductId, e.CampaignConditionId }).HasName("PK_CampaignConditionProducts");
+            });
+
+            modelBuilder.Entity<CampaignGoal>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_CampaignGoals");
+                entity.HasIndex(e => e.CreatedAt).HasDatabaseName("IX_CampaignGoals_CreatedAt");
+                entity.HasIndex(e => e.UpdatedAt).HasDatabaseName("IX_CampaignGoals_UpdatedAt");
+                entity.HasMany(e => e.CampaignGoalProducts).WithOne(e => e.CampaignGoal);
+            });
+
+            modelBuilder.Entity<CampaignGoalProduct>(entity =>
+            {
+                entity.HasKey(e => new { e.ProductId, e.CampaignGoalId }).HasName("PK_CampaignGoalProducts");
             });
 
             modelBuilder.Entity<BasketProduct>(entity =>
@@ -78,23 +112,15 @@ namespace GFood_CaseStudy.DataAccess.Concrete.EntityFramework.Contexts
                 entity.HasKey(e => new { e.ProductId, e.CategoryId }).HasName("PK_ProductCategories");
             });
 
-            modelBuilder.Entity<CouponCode>(entity =>
-            {
-                entity.HasKey(e => e.Id).HasName("PK_CouponCodes");
-                entity.HasIndex(e => e.CreatedAt).HasDatabaseName("IX_CouponCodes_CreatedAt");
-                entity.HasIndex(e => e.UpdatedAt).HasDatabaseName("IX_CouponCodes_UpdatedAt");
-                entity.HasMany(e => e.BasketCouponCodes).WithOne(e => e.CouponCode);
-            });
-
-            modelBuilder.Entity<BasketCouponCode>(entity =>
-            {
-                entity.HasKey(e => new { e.BasketId, e.CouponCodeId }).HasName("PK_BasketCouponCodes");
-            });
-
             modelBuilder.Entity<ProductPrice>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("PK_ProductPrices");
                 entity.HasIndex(e => e.CreatedAt).HasDatabaseName("IX_ProductPrices_CreatedAt");
+            });
+
+            modelBuilder.Entity<BasketCampaign>(entity =>
+            {
+                entity.HasKey(e => new { e.BasketId, e.CampaignId }).HasName("PK_BasketCampaigns");
             });
         }
     }

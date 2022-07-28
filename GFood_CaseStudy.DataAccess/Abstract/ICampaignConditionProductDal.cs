@@ -3,7 +3,7 @@ using GFood_CaseStudy.Entities.Models;
 
 namespace GFood_CaseStudy.DataAccess.Abstract
 {
-    public interface IBasketCouponCodeDal : IEntityRepository<BasketCouponCode>
+    public interface ICampaignConditionProductDal : IEntityRepository<CampaignConditionProduct>
     {
     }
 }
