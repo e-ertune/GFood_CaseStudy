@@ -11,11 +11,15 @@ namespace GFood_CaseStudy.Business.Concrete
     {
         private readonly IBasketProductDal _basketProductDal;
         private readonly IBasketService _basketService;
+        private readonly IProductService _productService;
+        private readonly IProductPriceService _productPriceService;
 
-        public BasketProductManager(IBasketProductDal basketProductDal, IBasketService basketService)
+        public BasketProductManager(IBasketProductDal basketProductDal, IBasketService basketService, IProductService productService, IProductPriceService productPriceService)
         {
             _basketProductDal = basketProductDal;
             _basketService = basketService;
+            _productService = productService;
+            _productPriceService = productPriceService;
         }
 
         [CacheRemoveAspect(pattern: "IBasketService.Get", Priority = 1)]
@@ -23,7 +27,9 @@ namespace GFood_CaseStudy.Business.Concrete
         public IResult Update(BasketProduct basketProduct)
         {
             var basket = _basketService.GetById(basketProduct.BasketId);
-            if (basket.IsSuccess)
+            var product = _productService.GetById(basketProduct.ProductId);
+            var price = _productPriceService.GetActiveByProductId(basketProduct.ProductId);
+            if (basket.IsSuccess && product.IsSuccess)
             {
                 if (basket.Data.BasketProducts.Any(x => x.ProductId == basketProduct.ProductId))
                 {
@@ -31,11 +37,11 @@ namespace GFood_CaseStudy.Business.Concrete
                     basketProductResult.Quantity += basketProduct.Quantity;
                     basketProductResult.UpdatedAt = DateTime.Now;
                     _ = _basketProductDal.Update(basketProductResult);
-                    basket.Data.Total += basketProductResult.Quantity * basketProductResult.Price;
+                    basket.Data.Total += basketProduct.Quantity * price.Data.Price;
                 }
                 else
                 {
-                    basketProduct.Price = basket.Data.BasketProducts.FirstOrDefault(x => x.ProductId == basketProduct.ProductId).Product.ProductPrices.FirstOrDefault(x => !x.IsDeleted).Price;
+                    basketProduct.Price = price.Data.Price;
                     var result = _basketProductDal.Add(basketProduct);
                     basket.Data.Total += basketProduct.Quantity * basketProduct.Price;
                 }
@@ -55,7 +61,8 @@ namespace GFood_CaseStudy.Business.Concrete
             {
                 var basket = _basketService.GetById(basketProduct.BasketId);
                 basket.Data.Total -= basketProduct.Quantity * basketProduct.Price;
-                _basketProductDal.Delete(basketProductResult);
+                basketProductResult.Quantity -= basketProduct.Quantity;
+                _ = _basketProductDal.Update(basketProductResult);
                 _ = _basketService.Update(basket.Data);
                 return new SuccessResult(message: "Ürün sepetten silindi.");
             }

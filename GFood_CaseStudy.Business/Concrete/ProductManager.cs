@@ -50,7 +50,12 @@ namespace GFood_CaseStudy.Business.Concrete
         [CacheAspect(duration: 60, Priority = 1)]
         public IDataResult<IEnumerable<Product>> GetList()
         {
-            return new SuccessDataResult<IEnumerable<Product>>(data: _productDal.GetList(), message: "Ürün listesi getirildi.");
+            return new SuccessDataResult<IEnumerable<Product>>(data: _productDal.GetList(includes: new[]
+            {
+                "ProductCategories",
+                "ProductCategories.Category",
+                "ProductPrices"
+            }), message: "Ürün listesi getirildi.");
         }
 
         [CacheAspect(duration: 60, Priority = 1)]

@@ -46,9 +46,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-app.MapPost("/CreateBasket", (IBasketService _basketService, [FromBody] Basket basket) =>
+app.MapPost("/CreateBasket", (IBasketService _basketService) =>
 {
-    var result = _basketService.Add(basket);
+    var result = _basketService.Add(new Basket());
     if (result.IsSuccess)
     {
         return Results.Ok(result);

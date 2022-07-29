@@ -49,6 +49,11 @@ app.ConfigureCustomExceptionMiddleware();
 app.MapGet("/GetSuitables/{basketId}", (ICampaignService _campaignService, int basketId) =>
 {
     var result = _campaignService.GetSuitableCampaigns(basketId);
+    if (result.IsSuccess)
+    {
+        return Results.Ok(result);
+    }
+    return Results.BadRequest(result);
 })
 .WithName("GetSuitables");
 
