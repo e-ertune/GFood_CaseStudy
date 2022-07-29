@@ -1,10 +1,12 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using GFood_CaseStudy.Business.Abstract;
 using GFood_CaseStudy.Business.DependencyResolvers.Autofac;
 using GFood_CaseStudy.Core.DependencyResolvers;
 using GFood_CaseStudy.Core.Extensions;
 using GFood_CaseStudy.Core.Utilities.IoC;
+using GFood_CaseStudy.Entities.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,12 +47,12 @@ app.UseHttpsRedirection();
 
 app.ConfigureCustomExceptionMiddleware();
 
-app.MapGet("/GetProducts", (IProductService _productService) =>
+app.MapGet("/GetProducts", (IProductService _productService, IMapper _mapper) =>
 {
     var result = _productService.GetList();
     if (result.IsSuccess)
     {
-        return Results.Ok(value: result);
+        return Results.Ok(value: _mapper.Map<IEnumerable<ProductDto>>(result.Data));
     }
     return Results.BadRequest(error: result);
 })

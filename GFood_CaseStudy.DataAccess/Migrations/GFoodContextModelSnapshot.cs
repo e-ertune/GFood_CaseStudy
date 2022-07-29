@@ -48,7 +48,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
                     b.HasIndex("UpdatedAt")
                         .HasDatabaseName("IX_Baskets_UpdatedAt");
 
-                    b.ToTable("Baskets");
+                    b.ToTable("Baskets", (string)null);
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.BasketCampaign", b =>
@@ -67,7 +67,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
 
                     b.HasIndex("CampaignId");
 
-                    b.ToTable("BasketCampaigns");
+                    b.ToTable("BasketCampaigns", (string)null);
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.BasketProduct", b =>
@@ -101,7 +101,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
                     b.HasIndex("UpdatedAt")
                         .HasDatabaseName("IX_BasketProducts_UpdatedAt");
 
-                    b.ToTable("BasketProducts");
+                    b.ToTable("BasketProducts", (string)null);
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.Campaign", b =>
@@ -144,7 +144,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
                     b.HasIndex("UpdatedAt")
                         .HasDatabaseName("IX_Campaigns_UpdatedAt");
 
-                    b.ToTable("Campaigns");
+                    b.ToTable("Campaigns", (string)null);
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.CampaignCondition", b =>
@@ -178,7 +178,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
                     b.HasIndex("UpdatedAt")
                         .HasDatabaseName("IX_CampaignConditions_UpdatedAt");
 
-                    b.ToTable("CampaignConditions");
+                    b.ToTable("CampaignConditions", (string)null);
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.CampaignConditionProduct", b =>
@@ -197,7 +197,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
 
                     b.HasIndex("CampaignConditionId");
 
-                    b.ToTable("CampaignConditionProducts");
+                    b.ToTable("CampaignConditionProducts", (string)null);
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.CampaignGoal", b =>
@@ -234,7 +234,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
                     b.HasIndex("UpdatedAt")
                         .HasDatabaseName("IX_CampaignGoals_UpdatedAt");
 
-                    b.ToTable("CampaignGoals");
+                    b.ToTable("CampaignGoals", (string)null);
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.CampaignGoalProduct", b =>
@@ -253,7 +253,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
 
                     b.HasIndex("CampaignGoalId");
 
-                    b.ToTable("CampaignGoalProducts");
+                    b.ToTable("CampaignGoalProducts", (string)null);
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.Category", b =>
@@ -301,7 +301,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
                     b.HasIndex("UpdatedAt")
                         .HasDatabaseName("IX_Categories_UpdatedAt");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.Product", b =>
@@ -348,7 +348,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
                     b.HasIndex("UpdatedAt")
                         .HasDatabaseName("IX_Products_UpdatedAt");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.ProductCategory", b =>
@@ -364,7 +364,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("ProductCategories");
+                    b.ToTable("ProductCategories", (string)null);
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.ProductPrice", b =>
@@ -395,7 +395,7 @@ namespace GFood_CaseStudy.DataAccess.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductPrices");
+                    b.ToTable("ProductPrices", (string)null);
                 });
 
             modelBuilder.Entity("GFood_CaseStudy.Entities.Models.BasketCampaign", b =>

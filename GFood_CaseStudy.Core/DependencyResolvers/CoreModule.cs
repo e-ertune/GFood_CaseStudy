@@ -13,6 +13,7 @@ namespace GFood_CaseStudy.Core.DependencyResolvers
             services.AddMemoryCache();
             services.AddSingleton<ICacheService, MemoryCacheManager>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
         }
     }
 }

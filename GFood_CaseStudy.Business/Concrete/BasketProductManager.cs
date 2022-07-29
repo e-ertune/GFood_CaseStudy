@@ -60,9 +60,21 @@ namespace GFood_CaseStudy.Business.Concrete
             if (basketProductResult != null)
             {
                 var basket = _basketService.GetById(basketProduct.BasketId);
+                if (basketProduct.Quantity > basketProductResult.Quantity)
+                {
+                    return new ErrorResult(message: "Yanlış miktar gönderildi.");
+                }
+                basket.Data.UpdatedAt = DateTime.Now;
                 basket.Data.Total -= basketProduct.Quantity * basketProduct.Price;
                 basketProductResult.Quantity -= basketProduct.Quantity;
-                _ = _basketProductDal.Update(basketProductResult);
+                if (basketProductResult.Quantity == 0)
+                {
+                    _basketProductDal.Delete(basketProductResult);
+                }
+                else
+                {
+                    _basketProductDal.Update(basketProductResult);
+                }
                 _ = _basketService.Update(basket.Data);
                 return new SuccessResult(message: "Ürün sepetten silindi.");
             }

@@ -55,7 +55,7 @@ namespace GFood_CaseStudy.Business.Concrete
                 "ProductCategories",
                 "ProductCategories.Category",
                 "ProductPrices"
-            }), message: "Ürün listesi getirildi.");
+            }).Where(x => x.ProductPrices.Any(y => !y.IsDeleted)), message: "Ürün listesi getirildi.");
         }
 
         [CacheAspect(duration: 60, Priority = 1)]

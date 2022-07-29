@@ -15,8 +15,9 @@ namespace GFood_CaseStudy.Business.Concrete
         private readonly ICampaignGoalProductDal _campaignGoalProductDal;
         private readonly IBasketService _basketService;
         private readonly IProductPriceService _productPriceService;
+        private readonly IBasketCampaignDal _basketCampaignDal;
 
-        public CampaignManager(ICampaignDal campaignDal, ICampaignConditionDal campaignConditionDal, ICampaignConditionProductDal campaignConditionProductDal, ICampaignGoalDal campaignGoalDal, ICampaignGoalProductDal campaignGoalProductDal, IBasketService basketService, IProductPriceService productPriceService)
+        public CampaignManager(ICampaignDal campaignDal, ICampaignConditionDal campaignConditionDal, ICampaignConditionProductDal campaignConditionProductDal, ICampaignGoalDal campaignGoalDal, ICampaignGoalProductDal campaignGoalProductDal, IBasketService basketService, IProductPriceService productPriceService, IBasketCampaignDal basketCampaignDal)
         {
             _campaignDal = campaignDal;
             _campaignConditionDal = campaignConditionDal;
@@ -25,6 +26,7 @@ namespace GFood_CaseStudy.Business.Concrete
             _campaignGoalProductDal = campaignGoalProductDal;
             _basketService = basketService;
             _productPriceService = productPriceService;
+            _basketCampaignDal = basketCampaignDal;
         }
 
         [CacheRemoveAspect("ICampaignService.Get", Priority = 1)]
@@ -129,7 +131,7 @@ namespace GFood_CaseStudy.Business.Concrete
             var basket = _basketService.GetById(basketId).Data;
             var suitableCampaigns = new List<Campaign>();
             foreach (var campaign in campaigns)
-            {                
+            {
                 if (IsSuitable(basket, campaign))
                 {
                     suitableCampaigns.Add(campaign);
@@ -146,6 +148,13 @@ namespace GFood_CaseStudy.Business.Concrete
         {
             var basket = _basketService.GetById(basketCampaign.BasketId).Data;
             var campaign = GetById(basketCampaign.CampaignId).Data;
+            //if (basket.BasketCampaigns.Any()) --TODO
+            //{
+            //    foreach (var item in basket.BasketCampaigns)
+            //    {
+            //        CancelCampaign(item);
+            //    }
+            //}
             if (IsSuitable(basket, campaign))
             {
                 foreach (var goal in campaign.CampaignGoals)
@@ -172,10 +181,35 @@ namespace GFood_CaseStudy.Business.Concrete
                     }
                     _basketService.Update(basket);
                 }
+                _basketCampaignDal.Add(basketCampaign);
                 return new SuccessDataResult<Basket>(data: basket, message: "Kampanya kullanıldı.");
             }
             return new ErrorDataResult<Basket>(data: basket, message: "Bu kampanya sepetle uyumsuzdur.");
         }
+
+        //public IDataResult<Basket> CancelCampaign(BasketCampaign basketCampaign) --TODO
+        //{
+        //    var campaign = GetById(basketCampaign.CampaignId).Data;
+        //    var basket = _basketService.GetById(basketCampaign.BasketId).Data;
+        //    var basketProducts = basket.BasketProducts;
+
+        //    if (basket.BasketCampaigns.Any(x => x.CampaignId == basketCampaign.CampaignId))
+        //    {
+        //        foreach (var goal in campaign.CampaignGoals)
+        //        {
+        //            if (goal.CampaignGoalProducts.Any())
+        //            {
+
+        //            }
+        //            else
+        //            {
+        //                basket.Total += goal.IsPercentage ? goal.Amount / 100 : goal.Amount;
+        //            }
+        //        }
+        //        _basketCampaignDal.Delete(_basketCampaignDal.Get(x => x.CampaignId == basketCampaign.CampaignId && x.BasketId == basketCampaign.BasketId));
+        //    }
+        //    return new ErrorDataResult<Basket>(data: basket, message: "Bu kampanya, bu sepette uygulanmamış");
+        //}
 
         private bool IsSuitable(Basket basket, Campaign campaign)
         {

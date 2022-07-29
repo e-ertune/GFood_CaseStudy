@@ -1,10 +1,12 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using GFood_CaseStudy.Business.Abstract;
 using GFood_CaseStudy.Business.DependencyResolvers.Autofac;
 using GFood_CaseStudy.Core.DependencyResolvers;
 using GFood_CaseStudy.Core.Extensions;
 using GFood_CaseStudy.Core.Utilities.IoC;
+using GFood_CaseStudy.Entities.DTOs;
 using GFood_CaseStudy.Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,20 +48,20 @@ app.UseHttpsRedirection();
 
 app.ConfigureCustomExceptionMiddleware();
 
-app.MapGet("/GetSuitables/{basketId}", (ICampaignService _campaignService, int basketId) =>
+app.MapGet("/GetSuitables/{basketId}", (ICampaignService _campaignService, IMapper _mapper, int basketId) =>
 {
     var result = _campaignService.GetSuitableCampaigns(basketId);
     if (result.IsSuccess)
     {
-        return Results.Ok(result);
+        return Results.Ok(_mapper.Map<IEnumerable<CampaignDto>>(result.Data));
     }
     return Results.BadRequest(result);
 })
 .WithName("GetSuitables");
 
-app.MapPost("/UseCampaign", (ICampaignService _campaignService, [FromBody] BasketCampaign basketCampaign) =>
+app.MapPost("/UseCampaign", (ICampaignService _campaignService, IMapper _mapper, [FromBody] BasketCampaignDto basketCampaignDto) =>
 {
-    var result = _campaignService.UseCampaign(basketCampaign);
+    var result = _campaignService.UseCampaign(_mapper.Map<BasketCampaign>(basketCampaignDto));
 })
 .WithName("UseCampaign");
 

@@ -38,8 +38,10 @@ namespace GFood_CaseStudy.Business.DependencyResolvers.Autofac
 
             builder.RegisterType<EfCampaignConditionDal>().As<ICampaignConditionDal>();
             builder.RegisterType<EfCampaignConditionProductDal>().As<ICampaignConditionProductDal>();
+
             builder.RegisterType<EfCampaignGoalDal>().As<ICampaignGoalDal>();
             builder.RegisterType<EfCampaignGoalProductDal>().As<ICampaignGoalProductDal>();
+            builder.RegisterType<EfBasketCampaignDal>().As<IBasketCampaignDal>();
 
             var assembly = Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().EnableInterfaceInterceptors(new ProxyGenerationOptions()

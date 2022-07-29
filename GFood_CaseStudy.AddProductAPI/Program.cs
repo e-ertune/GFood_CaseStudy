@@ -1,10 +1,12 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using GFood_CaseStudy.Business.Abstract;
 using GFood_CaseStudy.Business.DependencyResolvers.Autofac;
 using GFood_CaseStudy.Core.DependencyResolvers;
 using GFood_CaseStudy.Core.Extensions;
 using GFood_CaseStudy.Core.Utilities.IoC;
+using GFood_CaseStudy.Entities.DTOs;
 using GFood_CaseStudy.Entities.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,9 +48,9 @@ app.UseHttpsRedirection();
 
 app.ConfigureCustomExceptionMiddleware();
 
-app.MapPost("/UpdateProduct", (IBasketProductService _basketProductService, [FromBody] BasketProduct basketProduct) =>
+app.MapPost("/UpdateProduct", (IBasketProductService _basketProductService, IMapper _mapper, [FromBody] BasketProductDto basketProductDto) =>
 {
-    var result = _basketProductService.Update(basketProduct);
+    var result = _basketProductService.Update(_mapper.Map<BasketProduct>(basketProductDto));
     if (result.IsSuccess)
     {
         return Results.Ok(result);
@@ -57,9 +59,9 @@ app.MapPost("/UpdateProduct", (IBasketProductService _basketProductService, [Fro
 })
 .WithName("UpdateProduct");
 
-app.MapPost("/DeleteProduct", (IBasketProductService _basketProductService, [FromBody] BasketProduct basketProduct) =>
+app.MapPost("/DeleteProduct", (IBasketProductService _basketProductService, IMapper _mapper, [FromBody] BasketProductDto basketProductDto) =>
 {
-    var result = _basketProductService.Delete(basketProduct);
+    var result = _basketProductService.Delete(_mapper.Map<BasketProduct>(basketProductDto));
     if (result.IsSuccess)
     {
         return Results.Ok(result);

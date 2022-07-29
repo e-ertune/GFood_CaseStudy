@@ -1,10 +1,12 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
 using GFood_CaseStudy.Business.Abstract;
 using GFood_CaseStudy.Business.DependencyResolvers.Autofac;
 using GFood_CaseStudy.Core.DependencyResolvers;
 using GFood_CaseStudy.Core.Extensions;
 using GFood_CaseStudy.Core.Utilities.IoC;
+using GFood_CaseStudy.Entities.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,12 +46,12 @@ app.UseHttpsRedirection();
 
 app.ConfigureCustomExceptionMiddleware();
 
-app.MapGet("/GetBasket/{id}", (IBasketService _basketService, int id) =>
+app.MapGet("/GetBasket/{id}", (IBasketService _basketService, IMapper _mapper, int id) =>
 {
     var result = _basketService.GetById(id);
     if (result.IsSuccess)
     {
-        return Results.Ok(result);
+        return Results.Ok(_mapper.Map<BasketDto>(result.Data));
     }
     return Results.BadRequest(result);
 })
